@@ -9,17 +9,17 @@ import java.util.List;
 
 public class Property {
 
-    @NotBlank(message = "O nome da propriedade não pode estar vazio.")
-    @Pattern(regexp = "([A-Z]{1}[a-z]+\\s??)+", message = "O nome da propriedade deve começar com uma letra maiúscula")
-    @Size(max = 30, message = "O comprimento do nome não pode exceder 30 caracters")
+    @NotBlank(message = "Property name cannot be empty.")
+    @Pattern(regexp = "([A-Z]{1}[a-z]+\\s??)+", message = "Property name should start with upper case.")
+    @Size(max = 30, message = "Property name cannot exceed 30 characters")
     private String name;
 
-    @NotBlank(message = "O bairro não pode estar vazio.")
+    @NotBlank(message = "District cannot  be empty.")
     @Valid
     private District district;
 
     @Valid
-    @NotEmpty(message = "A lista de cômodos não pode estar vazia.")
+    @NotEmpty(message = "Room list cannot be empty.")
     private List<Room> listRoom;
 
 }
