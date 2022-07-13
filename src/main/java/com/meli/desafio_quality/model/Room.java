@@ -1,7 +1,16 @@
 package com.meli.desafio_quality.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.*;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Room {
 
     @NotBlank(message = "The field cannot be empty.")
@@ -24,6 +33,5 @@ public class Room {
             inclusive = false
     )
     private Double roomLength;
-
 
 }
