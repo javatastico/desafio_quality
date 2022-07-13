@@ -3,14 +3,16 @@ package com.meli.desafio_quality.util;
 import com.meli.desafio_quality.model.District;
 import com.meli.desafio_quality.model.Property;
 import com.meli.desafio_quality.model.Room;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Component
 public class DataLoader {
 
-    private final static List<Property> propertyDb = new ArrayList<>();
+    private final List<Property> propertyDb = new ArrayList<>();
 
     DataLoader() {
         this.propertyDb.add(
@@ -30,14 +32,14 @@ public class DataLoader {
                                         .build(),
                                 Room.builder()
                                         .name("Quarto 2")
-                                        .roomLength(4.00)
-                                        .roomWidth(3.00)
+                                        .roomLength(5.00)
+                                        .roomWidth(4.00)
                                         .build())
                         ).build());
 
     }
 
-    public static List<Property> getPropertyList() {
+    public List<Property> getPropertyList() {
         return propertyDb;
 
     }
