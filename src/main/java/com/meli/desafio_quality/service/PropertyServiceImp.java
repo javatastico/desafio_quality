@@ -29,4 +29,10 @@ public class PropertyServiceImp implements PropertyService {
 
         return listRoomDto;
     }
+
+    @Override
+    public RoomDto getBiggestRoom(Long id) {
+        List<RoomDto> listRoom = getAreaRoom(id);
+        return listRoom.stream().max((rOne, rTwo) -> rOne.getArea().compareTo(rTwo.getArea())).get();
+    }
 }
