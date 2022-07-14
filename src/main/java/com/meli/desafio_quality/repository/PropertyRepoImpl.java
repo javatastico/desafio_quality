@@ -81,4 +81,18 @@ public class PropertyRepoImpl implements PropertyRepository {
 
         return ret;
     }
+
+    @Override
+    public Property getProperty(Long idProperty) {
+        try {
+            return dataLoader.getPropertyList()
+                    .stream()
+                    .filter(p -> p.getId() == idProperty)
+                    .findFirst()
+                    .get();
+        } catch (Exception e) {
+            throw new NotFoundException("Property not found.", HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

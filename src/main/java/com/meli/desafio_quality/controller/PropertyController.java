@@ -1,5 +1,6 @@
 package com.meli.desafio_quality.controller;
 
+import com.meli.desafio_quality.model.PropertyDto;
 import com.meli.desafio_quality.model.Property;
 import com.meli.desafio_quality.model.PropertyDto;
 import com.meli.desafio_quality.model.RoomDto;
@@ -27,6 +28,18 @@ public class PropertyController {
     }
     @GetMapping("/get-area-property/{id}")
     public ResponseEntity<List<PropertyDto>> getPropertyArea(@PathVariable Long id){
-        return new ResponseEntity<>(service.getPropertyArea(id),HttpStatus.OK);
+        return new ResponseEntity(service.getPropertyArea(id),HttpStatus.OK);
     }
+
+    @GetMapping("/get-biggest-room/{id}")
+    public ResponseEntity<RoomDto> getBiggestRoom(@PathVariable Long id){
+        return new ResponseEntity<>(service.getBiggestRoom(id),HttpStatus.OK);
+    }
+
+    @GetMapping("/get-property-price/{id}")
+    public ResponseEntity<PropertyDto> getPropertyPrice(@PathVariable Long id){
+        return new ResponseEntity<>(service.getPropertyPrice(id),HttpStatus.OK);
+    }
+
+
 }
