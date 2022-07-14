@@ -1,10 +1,10 @@
 package com.meli.desafio_quality.service;
 
-import com.meli.desafio_quality.model.PropertyDto;
+import com.meli.desafio_quality.dto.PropertyResponseTotalPrice;
+import com.meli.desafio_quality.dto.PropertyResponseTotalSquare;
 import com.meli.desafio_quality.model.Property;
-import com.meli.desafio_quality.model.PropertyDto;
 import com.meli.desafio_quality.model.Room;
-import com.meli.desafio_quality.model.RoomDto;
+import com.meli.desafio_quality.dto.RoomDto;
 import com.meli.desafio_quality.repository.PropertyRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +41,9 @@ public class PropertyServiceImp implements PropertyService {
     }
 
     @Override
-    public PropertyDto getPropertyPrice(Long id) {
+    public PropertyResponseTotalPrice getPropertyPrice(Long id) {
         Property property = repositoryProperty.getProperty(id);
-        PropertyDto propertyDto = new PropertyDto();
+        PropertyResponseTotalPrice propertyDto = new PropertyResponseTotalPrice();
         List<RoomDto> listRoomDto = new ArrayList<>();
 
         property.getListRoom().forEach(r -> {
@@ -66,20 +66,16 @@ public class PropertyServiceImp implements PropertyService {
     }
 
     @Override
-    public List<PropertyDto> getPropertyArea(Long idProperty) {
-        List<Room> listRoom = repositoryProperty.getRoom(idProperty);
-        List<PropertyDto> propertyDtoList = new ArrayList<>();
-        
-        Double totalPropertySquare = listRoom.stream()
+    public List<PropertyResponseTotalSquare> getPropertyArea(Long idProperty) {
+        Property property = repositoryProperty.getProperty(idProperty);
+        List<PropertyResponseTotalSquare> propertyArea = new ArrayList<>();
+
+        Double totalPropertySquare = property.getListRoom().stream()
                 .mapToDouble(area -> area.getRoomLength() * area.getRoomWidth()).sum();
         log.info("Total square: " + totalPropertySquare);
 
-        listRoom.forEach(room -> {
-            propertyDtoList.add(PropertyDto.builder()
-                    .name(room.getName())
-                    .build());
-        });
+        propertyArea.add(new PropertyResponseTotalSquare(property.getName(), totalPropertySquare));
 
-        return null;
+        return propertyArea;
     }
 }

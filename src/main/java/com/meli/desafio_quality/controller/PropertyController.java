@@ -1,9 +1,8 @@
 package com.meli.desafio_quality.controller;
 
-import com.meli.desafio_quality.model.PropertyDto;
-import com.meli.desafio_quality.model.Property;
-import com.meli.desafio_quality.model.PropertyDto;
-import com.meli.desafio_quality.model.RoomDto;
+import com.meli.desafio_quality.dto.PropertyResponseTotalPrice;
+import com.meli.desafio_quality.dto.PropertyResponseTotalSquare;
+import com.meli.desafio_quality.dto.RoomDto;
 import com.meli.desafio_quality.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +26,7 @@ public class PropertyController {
         return new ResponseEntity<>(service.getAreaRoom(id),HttpStatus.OK);
     }
     @GetMapping("/get-area-property/{id}")
-    public ResponseEntity<List<PropertyDto>> getPropertyArea(@PathVariable Long id){
+    public ResponseEntity<List<PropertyResponseTotalSquare>> getPropertyArea(@PathVariable Long id){
         return new ResponseEntity(service.getPropertyArea(id),HttpStatus.OK);
     }
 
@@ -37,8 +36,8 @@ public class PropertyController {
     }
 
     @GetMapping("/get-property-price/{id}")
-    public ResponseEntity<PropertyDto> getPropertyPrice(@PathVariable Long id){
-        return new ResponseEntity<>(service.getPropertyPrice(id),HttpStatus.OK);
+    public ResponseEntity<PropertyResponseTotalPrice> getPropertyPrice(@PathVariable Long id){
+        return new ResponseEntity(service.getPropertyPrice(id),HttpStatus.OK);
     }
 
 
