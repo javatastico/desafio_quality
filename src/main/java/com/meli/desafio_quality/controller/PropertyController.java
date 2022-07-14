@@ -25,6 +25,11 @@ public class PropertyController {
         return new ResponseEntity<>(service.getAreaRoom(id),HttpStatus.OK);
     }
 
+    @GetMapping("/get-biggest-room/{id}")
+    public ResponseEntity<RoomDto> getBiggestRoom(@PathVariable Long id){
+        return new ResponseEntity<>(service.getBiggestRoom(id),HttpStatus.OK);
+    }
+
     @GetMapping("/get-property-price/{id}")
     public ResponseEntity<PropertyDto> getPropertyPrice(@PathVariable Long id){
         return new ResponseEntity<>(service.getPropertyPrice(id),HttpStatus.OK);

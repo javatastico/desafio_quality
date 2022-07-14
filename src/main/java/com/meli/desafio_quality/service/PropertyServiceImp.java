@@ -33,8 +33,14 @@ public class PropertyServiceImp implements PropertyService {
     }
 
     @Override
+    public RoomDto getBiggestRoom(Long id) {
+        List<RoomDto> listRoom = getAreaRoom(id);
+        return listRoom.stream().max((rOne, rTwo) -> rOne.getArea().compareTo(rTwo.getArea())).get();
+    }
+
+    @Override
     public PropertyDto getPropertyPrice(Long id) {
-        Property  property = repositoryProperty.getProperty(id);
+        Property property = repositoryProperty.getProperty(id);
         PropertyDto propertyDto = new PropertyDto();
         List<RoomDto> listRoomDto = new ArrayList<>();
 

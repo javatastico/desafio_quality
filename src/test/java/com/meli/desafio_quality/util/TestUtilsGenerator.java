@@ -82,6 +82,13 @@ public class TestUtilsGenerator {
                         .build());
     }
 
+    public static  RoomDto getBiggestRoomDto() {
+        return RoomDto.builder()
+                .name("Quarto teste 2")
+                .area(56.0)
+                .build();
+    }
+
     public static PropertyDto getPropertyDto() {
         return PropertyDto.builder()
                 .name("Casa teste 1")

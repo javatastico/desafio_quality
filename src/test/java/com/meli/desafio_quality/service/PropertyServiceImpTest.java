@@ -40,7 +40,6 @@ class PropertyServiceImpTest {
                 .thenReturn(TestUtilsGenerator.getPropertyWithId());
     }
 
-
     @Test
     void getAreaRoom_returnListRoomDto_whenPropertyExists() {
         Property property = TestUtilsGenerator.getPropertyWithId();
@@ -55,6 +54,21 @@ class PropertyServiceImpTest {
 
         Mockito.verify(repository,Mockito.atLeastOnce()).getRoom(property.getId());
 
+    }
+
+    @Test
+    void getBiggestRoom_returnTheBiggestRoomDtoOnAProperty() {
+        Property property = TestUtilsGenerator.getPropertyWithId();
+
+        RoomDto returnBiggetRoomDtoExpected = TestUtilsGenerator.getBiggestRoomDto();
+
+        RoomDto returnedRoomDto = service.getBiggestRoom(property.getId());
+
+        assertThat(returnedRoomDto.getArea()).isPositive();
+        assertThat(returnedRoomDto.getArea()).isEqualTo(returnBiggetRoomDtoExpected.getArea());
+        assertThat(returnedRoomDto.getName()).isEqualTo(returnBiggetRoomDtoExpected.getName());
+
+        Mockito.verify(repository,Mockito.atLeastOnce()).getRoom(property.getId());
     }
 
     @Test

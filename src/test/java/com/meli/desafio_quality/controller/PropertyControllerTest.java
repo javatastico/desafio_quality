@@ -18,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,6 +35,8 @@ class PropertyControllerTest {
     public void setup() {
         BDDMockito.when(service.getAreaRoom(ArgumentMatchers.anyLong()))
                 .thenReturn(TestUtilsGenerator.getRoomDto());
+        BDDMockito.when(service.getBiggestRoom(ArgumentMatchers.anyLong()))
+                .thenReturn(TestUtilsGenerator.getBiggestRoomDto());
         BDDMockito.when(service.getPropertyPrice(ArgumentMatchers.anyLong()))
                 .thenReturn(TestUtilsGenerator.getPropertyDto());
     }
@@ -60,6 +61,28 @@ class PropertyControllerTest {
                 .isEqualTo(listRoomDtoExpected.get(0).getName());
 
         Mockito.verify(service, Mockito.atLeastOnce()).getAreaRoom(property.getId());
+
+    }
+
+    @Test
+    void getBiggestRoom() {
+        Property property = TestUtilsGenerator.getPropertyWithId();
+        RoomDto returnBiggetRoomDtoExpected = TestUtilsGenerator.getBiggestRoomDto();
+
+        ResponseEntity<RoomDto> returnedRoomDto = controller.getBiggestRoom(property.getId());
+
+        assertThat(returnedRoomDto.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+
+        assertThat(returnedRoomDto.getBody()).isNotNull();
+
+        assertThat(returnedRoomDto.getBody().getArea())
+                .isEqualTo(returnBiggetRoomDtoExpected.getArea());
+
+        assertThat(returnedRoomDto.getBody().getName())
+                .isEqualTo(returnBiggetRoomDtoExpected.getName());
+
+        Mockito.verify(service, Mockito.atLeastOnce()).getBiggestRoom(property.getId());
 
     }
 
