@@ -23,4 +23,9 @@ public class PropertyController {
     public ResponseEntity<List<RoomDto>> getAreaRoom(@PathVariable Long id){
         return new ResponseEntity<>(service.getAreaRoom(id),HttpStatus.OK);
     }
+
+    @GetMapping("/get-biggest-room/{id}")
+    public ResponseEntity<RoomDto> getBiggestRoom(@PathVariable Long id){
+        return new ResponseEntity<>(service.getBiggestRoom(id),HttpStatus.OK);
+    }
 }

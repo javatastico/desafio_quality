@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface PropertyService {
     List<RoomDto> getAreaRoom(Long id);
+    RoomDto getBiggestRoom(Long id);
 }
