@@ -34,6 +34,11 @@ public class DataLoader extends Data{
                                         .name("Quarto 2")
                                         .roomLength(5.00)
                                         .roomWidth(4.00)
+                                        .build(),
+                                Room.builder()
+                                        .name("Quarto 3")
+                                        .roomLength(7.00)
+                                        .roomWidth(5.00)
                                         .build())
                         ).build());
 

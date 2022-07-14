@@ -1,5 +1,7 @@
 package com.meli.desafio_quality.controller;
 
+import com.meli.desafio_quality.model.Property;
+import com.meli.desafio_quality.model.PropertyDto;
 import com.meli.desafio_quality.model.RoomDto;
 import com.meli.desafio_quality.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +24,9 @@ public class PropertyController {
     @GetMapping("/get-area-room/{id}")
     public ResponseEntity<List<RoomDto>> getAreaRoom(@PathVariable Long id){
         return new ResponseEntity<>(service.getAreaRoom(id),HttpStatus.OK);
+    }
+    @GetMapping("/get-area-property/{id}")
+    public ResponseEntity<List<PropertyDto>> getPropertyArea(@PathVariable Long id){
+        return new ResponseEntity<>(service.getPropertyArea(id),HttpStatus.OK);
     }
 }

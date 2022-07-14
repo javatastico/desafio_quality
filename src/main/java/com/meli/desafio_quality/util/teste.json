@@ -1,0 +1,17 @@
+[
+  {
+    "propertyName": "Casa 1"
+  },
+  {
+    "name": "Quarto 1",
+    "area": 12.0
+  },
+  {
+    "name": "Quarto 2",
+    "area": 20.0
+  },
+  {
+    "name": "Quarto 3",
+    "area": 35.0
+  }
+]
