@@ -1,6 +1,7 @@
 package com.meli.desafio_quality.controller;
 
 import com.meli.desafio_quality.model.Property;
+import com.meli.desafio_quality.model.PropertyDto;
 import com.meli.desafio_quality.model.RoomDto;
 import com.meli.desafio_quality.service.PropertyService;
 import com.meli.desafio_quality.util.TestUtilsGenerator;
@@ -17,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,6 +36,8 @@ class PropertyControllerTest {
     public void setup() {
         BDDMockito.when(service.getAreaRoom(ArgumentMatchers.anyLong()))
                 .thenReturn(TestUtilsGenerator.getRoomDto());
+        BDDMockito.when(service.getPropertyPrice(ArgumentMatchers.anyLong()))
+                .thenReturn(TestUtilsGenerator.getPropertyDto());
     }
 
     @Test
@@ -57,5 +61,27 @@ class PropertyControllerTest {
 
         Mockito.verify(service, Mockito.atLeastOnce()).getAreaRoom(property.getId());
 
+    }
+
+    @Test
+    void getPropertyPrice() {
+        Property property = TestUtilsGenerator.getPropertyWithId();
+        PropertyDto propertyDto =  TestUtilsGenerator.getPropertyDto();
+
+        ResponseEntity<PropertyDto> returnedPropertyDto = controller.getPropertyPrice(property.getId());
+
+        assertThat(returnedPropertyDto.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+        assertThat(returnedPropertyDto.getBody()).isNotNull();
+
+        assertThat(returnedPropertyDto.getBody().getName()).isEqualTo(propertyDto.getName());
+
+        assertThat(returnedPropertyDto.getBody().getPrice()).isEqualTo(propertyDto.getPrice());
+
+        assertThat(returnedPropertyDto.getBody().getDistrict()).isEqualTo(propertyDto.getDistrict());
+
+        assertThat(returnedPropertyDto.getBody().getRooms()).isEqualTo(propertyDto.getRooms());
+
+        Mockito.verify(service, Mockito.atLeastOnce()).getPropertyPrice(property.getId());
     }
 }

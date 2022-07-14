@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.InstanceOfAssertFactories.list;
 import static org.junit.jupiter.api.Assertions.*;
@@ -57,5 +58,34 @@ class PropertyRepoImplTest {
 
         assertThat(exception.getStatus()).isEqualTo(HttpStatus.NOT_FOUND);
         assertThat(exception.getMessage()).isEqualTo("Property not found.");
+    }
+
+    @Test
+    void getProperty_returnProperty_whenPropertyExists() {
+        Property property = TestUtilsGenerator.getPropertyWithId();
+        Property savedProperty = repository.save(property);
+
+        Property returnedProperty = repository.getProperty(savedProperty.getId());
+
+        assertThat(returnedProperty).isNotNull();
+
+        assertThat(returnedProperty.getId()).isEqualTo(savedProperty.getId());
+        assertThat(returnedProperty.getName()).isEqualTo(savedProperty.getName());
+        assertThat(returnedProperty.getDistrict()).isEqualTo(savedProperty.getDistrict());
+        assertThat(returnedProperty.getListRoom()).isEqualTo(savedProperty.getListRoom());
+
+    }
+
+    @Test
+    void getProperty_returnNotFoundException_whenPropertyNotExists() {
+        Property property = TestUtilsGenerator.getPropertyWithId();
+
+        NotFoundException exception = Assertions.assertThrows(NotFoundException.class, () -> {
+            repository.getProperty(property.getId());
+        });
+
+        assertThat(exception.getStatus()).isEqualTo(HttpStatus.NOT_FOUND);
+        assertThat(exception.getMessage()).isEqualTo("Property not found.");
+
     }
 }
