@@ -10,11 +10,11 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class DataLoader {
+public class DataLoader extends Data{
 
     private final List<Property> propertyDb = new ArrayList<>();
 
-    DataLoader() {
+    public DataLoader() {
         this.propertyDb.add(
                 Property.builder()
                         .id(1L)
