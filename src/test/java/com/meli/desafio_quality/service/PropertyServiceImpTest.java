@@ -1,6 +1,7 @@
 package com.meli.desafio_quality.service;
 
 import com.meli.desafio_quality.model.Property;
+import com.meli.desafio_quality.model.PropertyDto;
 import com.meli.desafio_quality.model.RoomDto;
 import com.meli.desafio_quality.repository.PropertyRepoImpl;
 import com.meli.desafio_quality.repository.PropertyRepository;
@@ -35,6 +36,8 @@ class PropertyServiceImpTest {
     public void setup(){
         BDDMockito.when(repository.getRoom(ArgumentMatchers.anyLong()))
                 .thenReturn(TestUtilsGenerator.getRoom());
+        BDDMockito.when(repository.getProperty(ArgumentMatchers.anyLong()))
+                .thenReturn(TestUtilsGenerator.getPropertyWithId());
     }
 
     @Test
@@ -67,4 +70,20 @@ class PropertyServiceImpTest {
 
         Mockito.verify(repository,Mockito.atLeastOnce()).getRoom(property.getId());
     }
+
+    @Test
+    void getPropertyPriceTest(){
+        Property property = TestUtilsGenerator.getPropertyWithId();
+
+        PropertyDto returnPropertyDto = TestUtilsGenerator.getPropertyDto();
+        PropertyDto propertyDto = service.getPropertyPrice(property.getId());
+
+        assertThat(propertyDto.getPrice()).isEqualTo(returnPropertyDto.getPrice());
+        assertThat(propertyDto.getName()).isEqualTo(returnPropertyDto.getName());
+        assertThat(propertyDto.getRooms().get(0).getArea()).isEqualTo(returnPropertyDto.getRooms().get(0).getArea());
+
+        Mockito.verify(service, Mockito.atLeastOnce()).getPropertyPrice(property.getId());
+    }
+
+
 }

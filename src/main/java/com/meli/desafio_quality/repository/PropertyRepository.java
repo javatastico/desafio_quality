@@ -10,5 +10,6 @@ public interface PropertyRepository {
 
     public Property save(Property property);
     public List<Room> getRoom(Long idProperty);
+    public Property getProperty(Long idProperty);
 
 }
