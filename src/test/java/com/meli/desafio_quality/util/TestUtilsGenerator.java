@@ -1,9 +1,6 @@
 package com.meli.desafio_quality.util;
 
-import com.meli.desafio_quality.model.District;
-import com.meli.desafio_quality.model.Property;
-import com.meli.desafio_quality.model.Room;
-import com.meli.desafio_quality.model.RoomDto;
+import com.meli.desafio_quality.model.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -85,4 +82,23 @@ public class TestUtilsGenerator {
                         .build());
     }
 
+    public static PropertyDto getPropertyDto() {
+        return PropertyDto.builder()
+                .name("Casa teste 1")
+                .district(District.builder()
+                        .name("Bairro teste 1")
+                        .valueM2(500.0)
+                        .build()
+                )
+                .rooms(Arrays.asList(
+                        RoomDto.builder()
+                                .name("Quarto teste 1")
+                                .area(54.0)
+                                .build(),
+                        RoomDto.builder()
+                                .name("Quarto teste 2")
+                                .area(56.0)
+                                .build())
+                ).build();
+    }
 }
