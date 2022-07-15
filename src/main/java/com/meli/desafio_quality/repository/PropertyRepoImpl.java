@@ -59,8 +59,6 @@ public class PropertyRepoImpl implements PropertyRepository {
 
     @Override
     public List<Room> getRoom(Long idProperty) {
-        System.out.println("Scope: " + scope);
-        System.out.println("Data loader: " + dataLoader.getPropertyList());
         try {
             return dataLoader.getPropertyList().stream()
                     .filter(p -> p.getId() == idProperty)

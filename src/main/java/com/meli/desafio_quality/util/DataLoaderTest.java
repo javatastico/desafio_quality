@@ -19,30 +19,24 @@ public class DataLoaderTest extends Data{
         this.propertyDb.add(
                 Property.builder()
                         .id(1L)
-                        .name("Casa 1")
+                        .name("Casa teste 1")
                         .district(District.builder()
-                                .name("Bairro 1")
-                                .valueM2(BigDecimal.valueOf(100.0))
+                                .name("Bairro teste 1")
+                                .valueM2(BigDecimal.valueOf(500.0))
                                 .build()
                         )
                         .listRoom(Arrays.asList(
                                 Room.builder()
-                                        .name("Quarto testttt 1")
-                                        .roomLength(4.00)
-                                        .roomWidth(3.00)
+                                        .name("Quarto teste 1")
+                                        .roomLength(9.00)
+                                        .roomWidth(6.00)
                                         .build(),
                                 Room.builder()
-                                        .name("Quarto testttt 2")
-                                        .roomLength(5.00)
-                                        .roomWidth(4.00)
-                                        .build(),
-                                Room.builder()
-                                        .name("Quarto 3")
-                                        .roomLength(7.00)
-                                        .roomWidth(5.00)
+                                        .name("Quarto teste 2")
+                                        .roomLength(8.00)
+                                        .roomWidth(7.00)
                                         .build())
                         ).build());
-
     }
 
     public List<Property> getPropertyList() {

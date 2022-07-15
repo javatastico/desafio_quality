@@ -14,10 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class PropertyResponseTotalPrice {
-    private List<RoomDto> rooms;
-    private BigDecimal price;
     private String name;
+    private BigDecimal price;
     private District district;
+    private List<RoomDto> rooms;
 }
 
 
