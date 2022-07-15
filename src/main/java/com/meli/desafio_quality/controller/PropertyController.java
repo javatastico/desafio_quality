@@ -24,11 +24,11 @@ public class PropertyController {
     private PropertyService service;
 
     /**
-     * Get area room
+     * Gets the area of a room
      *
      * @param id - Property id.
-     * @return An area and name of room, return an exception if property isn't find.
-     * @throws NotFoundException When a property doesn't exists.
+     * @return An area and name of room, return an exception if property isn't found.
+     * @throws NotFoundException When a property doesn't exist.
      * @see <a href="http://localhost:8080/api/vi/get-room-area/{id}">Get area room</a>
      */
     @GetMapping("/get-room-area/{id}")
@@ -37,11 +37,11 @@ public class PropertyController {
     }
 
     /**
-     * Get area property
+     * Gets the area of a property
      *
      * @param id - Property id.
-     * @return An area and name of property, return an exception if property isn't find.
-     * @throws NotFoundException When a property doesn't exists.
+     * @return An area and name of a property, return an exception if property isn't found.
+     * @throws NotFoundException When a property doesn't exist.
      * @see <a href="http://localhost:8080/api/vi/get-property-area/{id}">Get area property</a>
      */
     @GetMapping("/get-property-area/{id}")
@@ -50,11 +50,11 @@ public class PropertyController {
     }
 
     /**
-     * Get the biggest room of a property
+     * Gets the biggest room of a property
      *
      * @param id - Property id.
-     * @return The biggest room of a property, return an exception if property isn't find.
-     * @throws NotFoundException When a property doesn't exists.
+     * @return The biggest room of a property, return an exception if property isn't found.
+     * @throws NotFoundException When a property doesn't exist.
      * @see <a href="http://localhost:8080/api/vi/get-biggest-room/{id}">Get the biggest room</a>
      */
     @GetMapping("/get-biggest-room/{id}")
@@ -63,23 +63,33 @@ public class PropertyController {
     }
 
     /**
-     * Get total price of the property and its attributes
+     * Gets total price of a property based in its total area and by District
      *
      * @param id - Property id.
-     * @return The biggest room of a property, return an exception if property isn't find.
-     * @throws NotFoundException When a property doesn't exists.
-     * @see <a href="http://localhost:8080/api/vi/get-biggest-room/{id}">Get the biggest room</a>
+     * @return Total price of a property based in its total area and by District, return an exception if property isn't found.
+     * @throws NotFoundException When a property doesn't exist.
+     * @see <a href="http://localhost:8080/api/vi//get-property-price/{id}">Get total price of a property</a>
      */
     @GetMapping("/get-property-price/{id}")
     public ResponseEntity<PropertyResponseTotalPrice> getPropertyPrice(@PathVariable Long id){
         return new ResponseEntity(service.getPropertyPrice(id),HttpStatus.OK);
     }
-
+    /**
+     * @return Save a new property, return an exception if property isn't found.
+     * @throws NotFoundException When a property doesn't exist.
+     * @see <a href="http://localhost:8080/api/vi/property">Saves a property</a>
+     */
     @PostMapping("/property")
     public ResponseEntity<Property> saveProperty(@RequestBody @Valid PropertyRequestSave propertyRequestSave) {
         return new ResponseEntity<>(service.save(propertyRequestSave), HttpStatus.CREATED);
     }
-
+    /**
+     * Get all properties saved
+     *
+     * @return Get all properties saved, return an exception if property isn't found.
+     * @throws NotFoundException When a property doesn't exist.
+     * @see <a href="http://localhost:8080/api/vi/property">Saves a property</a>
+     */
     @GetMapping("/property")
     public ResponseEntity<List<Property>> getAllProperties() {
         return new ResponseEntity<>(service.getAllProperties(), HttpStatus.OK);
