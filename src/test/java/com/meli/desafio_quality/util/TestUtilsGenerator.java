@@ -1,10 +1,12 @@
 package com.meli.desafio_quality.util;
 
+import com.meli.desafio_quality.dto.PropertyRequestSave;
 import com.meli.desafio_quality.dto.PropertyResponseTotalPrice;
 import com.meli.desafio_quality.dto.PropertyResponseTotalSquare;
 import com.meli.desafio_quality.dto.RoomDto;
 import com.meli.desafio_quality.model.*;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class TestUtilsGenerator {
                 .name("Casa teste 1")
                 .district(District.builder()
                         .name("Bairro teste 1")
-                        .valueM2(500.0)
+                        .valueM2(BigDecimal.valueOf(500.0))
                         .build()
                 )
                 .listRoom(Arrays.asList(
@@ -42,7 +44,7 @@ public class TestUtilsGenerator {
                 .name("Casa teste 1")
                 .district(District.builder()
                         .name("Bairro teste 1")
-                        .valueM2(500.0)
+                        .valueM2(BigDecimal.valueOf(500.0))
                         .build()
                 )
                 .listRoom(Arrays.asList(
@@ -103,23 +105,88 @@ public class TestUtilsGenerator {
 
         return PropertyResponseTotalPrice.builder()
                 .name("Casa teste 1")
-                .price(55000.0)
+                .price(BigDecimal.valueOf(55000.00).setScale(2))
                 .district(District.builder()
                         .name("Bairro teste 1")
-                        .valueM2(500.0)
+                        .valueM2(BigDecimal.valueOf(500.00))
                         .build()
                 )
                 .rooms(Arrays.asList(
                         RoomDto.builder()
                                 .name("Quarto teste 1")
-                                .area(54.0)
+                                .area(54.00)
                                 .build(),
                         RoomDto.builder()
                                 .name("Quarto teste 2")
-                                .area(56.0)
+                                .area(56.00)
                                 .build())
                 ).build();
     }
 
+    public static List<Property> getPropertyListWithId() {
+        return Arrays.asList(
+                Property.builder()
+                        .id(1L)
+                        .name("Casa teste 1")
+                        .district(District.builder()
+                                .name("Bairro teste 1")
+                                .valueM2(BigDecimal.valueOf(500.0))
+                                .build()
+                        )
+                        .listRoom(Arrays.asList(
+                                Room.builder()
+                                        .name("Quarto teste 1")
+                                        .roomLength(9.00)
+                                        .roomWidth(6.00)
+                                        .build(),
+                                Room.builder()
+                                        .name("Quarto teste 2")
+                                        .roomLength(8.00)
+                                        .roomWidth(7.00)
+                                        .build())
+                        ).build(),
+                Property.builder()
+                        .id(2L)
+                        .name("Casa teste 2")
+                        .district(District.builder()
+                                .name("Bairro teste 2")
+                                .valueM2(BigDecimal.valueOf(400.0))
+                                .build()
+                        )
+                        .listRoom(Arrays.asList(
+                                Room.builder()
+                                        .name("Quarto teste 1.2")
+                                        .roomLength(8.00)
+                                        .roomWidth(5.00)
+                                        .build(),
+                                Room.builder()
+                                        .name("Quarto teste 2.2")
+                                        .roomLength(4.00)
+                                        .roomWidth(3.00)
+                                        .build())
+                        ).build()
+        );
+        }
 
+    public static PropertyRequestSave getNewPropertyRequestSave() {
+        return PropertyRequestSave.builder()
+                .name("Casa teste 1")
+                .district(District.builder()
+                        .name("Bairro teste 1")
+                        .valueM2(BigDecimal.valueOf(500.0))
+                        .build()
+                )
+                .listRoom(Arrays.asList(
+                        Room.builder()
+                                .name("Quarto teste 1")
+                                .roomLength(9.00)
+                                .roomWidth(6.00)
+                                .build(),
+                        Room.builder()
+                                .name("Quarto teste 2")
+                                .roomLength(8.00)
+                                .roomWidth(7.00)
+                                .build())
+                ).build();
+    }
 }

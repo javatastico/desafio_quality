@@ -13,22 +13,22 @@ import javax.validation.constraints.*;
 @Builder
 public class Room {
 
-    @NotBlank(message = "The field cannot be empty.")
+    @NotEmpty(message = "The field cannot be empty.")
     @Pattern(message = "The name of the room must begin with a capital letter",
-            regexp = "/^[A-Z][A-Za-z0-9_-]{3,19}$/")
+            regexp = "[A-Z][a-záàâãéèêíïóôõöúçñ/s]+")
     @Size(message = "The length of the room cannot exceed 30 characters",
             max = 30)
     private String name;
 
-    @NotBlank(message = "The width of the room cannot be empty.")
-    @DecimalMax(message = "Value cannot exceed 25 characters", value = "25")
+    @NotNull(message = "The width of the room cannot be empty.")
+    @DecimalMax(message = "Value cannot exceed 25 characters", value = "25.0")
     @DecimalMin(message = "Value should be greater then 0", value = "0",
             inclusive = false
     )
     private Double roomWidth;
 
-    @NotBlank(message = "The width of the room cannot be empty.")
-    @DecimalMax(message = "Value cannot exceed 33 characters", value = "33")
+    @NotNull(message = "The width of the room cannot be empty.")
+    @DecimalMax(message = "Value cannot exceed 33 characters", value = "33.0")
     @DecimalMin(message = "Value should be greater then 0", value = "0",
             inclusive = false
     )

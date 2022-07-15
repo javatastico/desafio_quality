@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -82,5 +83,28 @@ class PropertyRepoImplTest {
         assertThat(exception.getStatus()).isEqualTo(HttpStatus.NOT_FOUND);
         assertThat(exception.getMessage()).isEqualTo("Property not found.");
 
+    }
+
+    @Test
+    void getAllProperties_returnAPropertyList_whenListExists() {
+        List<Property> propertyList = TestUtilsGenerator.getPropertyListWithId();
+
+        repository.save(propertyList.get(0));
+        repository.save(propertyList.get(1));
+
+        List<Property> propertyListReturned = repository.getAllProperties();
+
+        assertThat(propertyListReturned.size()).isEqualTo(propertyList.size());
+        assertThat(propertyListReturned.get(0)).isEqualTo(propertyList.get(0));
+        assertThat(propertyListReturned.get(1)).isEqualTo(propertyList.get(1));
+    }
+
+    @Test
+    void getAllProperties_returnAPropertyList_whenListNotExists() {
+        List<Property> propertyList = new ArrayList<>();
+
+        List<Property> propertyListReturned = repository.getAllProperties();
+
+        assertThat(propertyListReturned.size()).isEqualTo(propertyList.size());
     }
 }

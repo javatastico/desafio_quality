@@ -3,6 +3,7 @@ package com.meli.desafio_quality.service;
 import com.meli.desafio_quality.dto.PropertyResponseTotalSquare;
 import com.meli.desafio_quality.model.Property;
 import com.meli.desafio_quality.dto.PropertyResponseTotalPrice;
+import com.meli.desafio_quality.dto.PropertyRequestSave;
 import com.meli.desafio_quality.dto.RoomDto;
 import com.meli.desafio_quality.repository.PropertyRepository;
 import com.meli.desafio_quality.util.TestUtilsGenerator;
@@ -36,6 +37,10 @@ class PropertyServiceImpTest {
                 .thenReturn(TestUtilsGenerator.getRoom());
         BDDMockito.when(repository.getProperty(ArgumentMatchers.anyLong()))
                 .thenReturn(TestUtilsGenerator.getPropertyWithId());
+        BDDMockito.when(repository.save(ArgumentMatchers.any(Property.class)))
+                .thenReturn(TestUtilsGenerator.getPropertyWithId());
+        BDDMockito.when(repository.getAllProperties())
+                .thenReturn(TestUtilsGenerator.getPropertyListWithId());
     }
 
     @Test
@@ -99,5 +104,41 @@ class PropertyServiceImpTest {
         );
         assertThat(responseTotalSquare.get(0).getTotalPropertySquare()).isPositive();
 
+    }
+    @Test
+    void save() {
+        PropertyRequestSave propertyRequestSave = TestUtilsGenerator.getNewPropertyRequestSave();
+
+        Property propertyReturned = service.save(propertyRequestSave);
+
+        assertThat(propertyReturned).isNotNull();
+        assertThat(propertyReturned.getName()).isEqualTo(propertyReturned.getName());
+        assertThat(propertyReturned.getDistrict()).isNotNull();
+        assertThat(propertyReturned.getDistrict().getName()).isEqualTo(propertyReturned.getDistrict().getName());
+        assertThat(propertyReturned.getDistrict().getValueM2()).isEqualTo(propertyReturned.getDistrict().getValueM2());
+        assertThat(propertyReturned.getListRoom()).isNotNull();
+        assertThat(propertyReturned.getListRoom()).isNotEmpty();
+        assertThat(propertyReturned.getListRoom().size()).isEqualTo(propertyReturned.getListRoom().size());
+        assertThat(propertyReturned.getListRoom().get(0)).isEqualTo(propertyReturned.getListRoom().get(0));
+        assertThat(propertyReturned.getListRoom().get(1)).isEqualTo(propertyReturned.getListRoom().get(1));
+
+        Mockito.verify(repository, Mockito.atLeastOnce()).save(Property.builder()
+                .name(propertyRequestSave.getName())
+                .district(propertyRequestSave.getDistrict())
+                .listRoom(propertyRequestSave.getListRoom())
+                .build());
+    }
+
+    @Test
+    void getAllProperties() {
+        List<Property> propertyList = TestUtilsGenerator.getPropertyListWithId();
+
+        List<Property> propertyListReturned = service.getAllProperties();
+
+        assertThat(propertyListReturned.size()).isEqualTo(propertyList.size());
+        assertThat(propertyListReturned.get(0)).isEqualTo(propertyList.get(0));
+        assertThat(propertyListReturned.get(1)).isEqualTo(propertyList.get(1));
+
+        Mockito.verify(repository, Mockito.atLeastOnce()).getAllProperties();
     }
 }

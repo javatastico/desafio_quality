@@ -1,15 +1,16 @@
 package com.meli.desafio_quality.service;
 
+import com.meli.desafio_quality.dto.PropertyRequestSave;
 import com.meli.desafio_quality.dto.PropertyResponseTotalPrice;
 import com.meli.desafio_quality.dto.PropertyResponseTotalSquare;
-import com.meli.desafio_quality.model.Property;
-import com.meli.desafio_quality.model.Room;
 import com.meli.desafio_quality.dto.RoomDto;
+import com.meli.desafio_quality.model.*;
 import com.meli.desafio_quality.repository.PropertyRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class PropertyServiceImp implements PropertyService {
                     .area((r.getRoomLength() * r.getRoomWidth()))
                     .build());
         });
+
         return listRoomDto;
     }
 
@@ -59,8 +61,11 @@ public class PropertyServiceImp implements PropertyService {
                 .getRooms()
                 .stream()
                 .reduce(
-                        0D, (partialPriceResult, room) -> partialPriceResult + room.getArea(), Double::sum)
-                * propertyDto.getDistrict().getValueM2());
+                        BigDecimal.ZERO,
+                        (partialPriceResult, room) -> partialPriceResult.add(propertyDto.getDistrict().getValueM2()
+                            .multiply(BigDecimal.valueOf(room.getArea()))),
+                        BigDecimal::add)
+        );
 
         return propertyDto;
     }
@@ -79,5 +84,19 @@ public class PropertyServiceImp implements PropertyService {
                 .totalPropertySquare(totalPropertySquare).build());
 
         return propertyArea;
+    }
+
+    @Override
+    public Property save(PropertyRequestSave propertyRequestSave) {
+        return repositoryProperty.save(Property.builder()
+                .name(propertyRequestSave.getName())
+                .district(propertyRequestSave.getDistrict())
+                .listRoom(propertyRequestSave.getListRoom())
+                .build());
+    }
+
+    @Override
+    public List<Property> getAllProperties() {
+        return repositoryProperty.getAllProperties();
     }
 }

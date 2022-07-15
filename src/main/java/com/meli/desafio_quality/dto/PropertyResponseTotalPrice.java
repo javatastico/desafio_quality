@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -14,7 +15,7 @@ import java.util.List;
 @Builder
 public class PropertyResponseTotalPrice {
     private List<RoomDto> rooms;
-    private Double price;
+    private BigDecimal price;
     private String name;
     private District district;
 }

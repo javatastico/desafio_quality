@@ -70,18 +70,6 @@ public class PropertyRepoImpl implements PropertyRepository {
         }
     }
 
-    public boolean exists(Long id) {
-        boolean ret = false;
-
-        try {
-            ret = dataLoader.getPropertyList().stream().anyMatch(p -> p.getId().equals(id));
-        } catch (Exception e) {
-
-        }
-
-        return ret;
-    }
-
     @Override
     public Property getProperty(Long idProperty) {
         try {
@@ -93,6 +81,11 @@ public class PropertyRepoImpl implements PropertyRepository {
         } catch (Exception e) {
             throw new NotFoundException("Property not found.", HttpStatus.NOT_FOUND);
         }
+    }
+
+    @Override
+    public List<Property> getAllProperties() {
+        return dataLoader.getPropertyList();
     }
 
 }
