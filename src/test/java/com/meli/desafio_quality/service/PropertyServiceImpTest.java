@@ -96,13 +96,13 @@ class PropertyServiceImpTest {
         PropertyResponseTotalSquare expectedTotalSquare = TestUtilsGenerator.getResponseTotalSquare();
         Property property = TestUtilsGenerator.getPropertyWithId();
 
-        List<PropertyResponseTotalSquare> responseTotalSquare = service.getPropertyArea(property.getId());
+        PropertyResponseTotalSquare responseTotalSquare = service.getPropertyArea(property.getId());
 
-        assertThat(responseTotalSquare.get(0).getName()).isEqualTo(expectedTotalSquare.getName());
-        assertThat(responseTotalSquare.get(0).getTotalPropertySquare()).isEqualTo(
+        assertThat(responseTotalSquare.getName()).isEqualTo(expectedTotalSquare.getName());
+        assertThat(responseTotalSquare.getTotalPropertySquare()).isEqualTo(
                 expectedTotalSquare.getTotalPropertySquare()
         );
-        assertThat(responseTotalSquare.get(0).getTotalPropertySquare()).isPositive();
+        assertThat(responseTotalSquare.getTotalPropertySquare()).isPositive();
 
     }
     @Test

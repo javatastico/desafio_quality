@@ -1,5 +1,6 @@
 package com.meli.desafio_quality.controller;
 
+import com.meli.desafio_quality.dto.PropertyResponseTotalSquare;
 import com.meli.desafio_quality.model.Property;
 import com.meli.desafio_quality.dto.PropertyResponseTotalPrice;
 import com.meli.desafio_quality.dto.PropertyRequestSave;
@@ -42,6 +43,8 @@ class PropertyControllerTest {
                 .thenReturn(TestUtilsGenerator.getPropertyListWithId());
         BDDMockito.when(service.save(ArgumentMatchers.any(PropertyRequestSave.class)))
                 .thenReturn(TestUtilsGenerator.getPropertyWithId());
+        BDDMockito.when(service.getPropertyArea(ArgumentMatchers.anyLong()))
+                .thenReturn(TestUtilsGenerator.getResponseTotalSquare());
     }
 
     @Test
@@ -141,4 +144,26 @@ class PropertyControllerTest {
 
         Mockito.verify(service, Mockito.atLeastOnce()).getAllProperties();
     }
+
+    @Test
+    void getPropertyArea() {
+
+        PropertyResponseTotalSquare expectedPropertyResponse = TestUtilsGenerator.getResponseTotalSquare();
+        Property property = TestUtilsGenerator.getPropertyWithId();
+        ResponseEntity<PropertyResponseTotalSquare> returnedPropertyArea = controller.getPropertyArea(property.getId());
+
+        assertThat(returnedPropertyArea.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+        assertThat(returnedPropertyArea.getBody().getName())
+                .isEqualTo(expectedPropertyResponse.getName());
+
+        assertThat(returnedPropertyArea.getBody()).isNotNull();
+
+        assertThat(returnedPropertyArea.getBody().getTotalPropertySquare())
+                .isEqualTo(expectedPropertyResponse.getTotalPropertySquare());
+
+        Mockito.verify(service, Mockito.atLeastOnce()).getPropertyArea(property.getId());
+
+    }
+
 }

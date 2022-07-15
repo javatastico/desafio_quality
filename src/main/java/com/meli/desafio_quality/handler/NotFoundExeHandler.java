@@ -1,13 +1,11 @@
 package com.meli.desafio_quality.handler;
 
-import com.meli.desafio_quality.exception.ExceededStock;
 import com.meli.desafio_quality.exception.ExceptionDetails;
 import com.meli.desafio_quality.exception.NotFoundException;
 import com.meli.desafio_quality.exception.ValidationExceptionDetails;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
