@@ -19,17 +19,11 @@ import java.util.List;
 public class Property {
 
     private Long id;
-    @NotBlank(message = "Property name cannot be empty.")
-    @Pattern(regexp = "([A-Z]{1}[a-z]+\\s??)+", message = "Property name should start with upper case.")
-    @Size(max = 30, message = "Property name cannot exceed 30 characters")
+
     private String name;
 
-    @NotBlank(message = "District cannot  be empty.")
-    @Valid
     private District district;
 
-    @Valid
-    @NotEmpty(message = "Room list cannot be empty.")
     private List<Room> listRoom;
 
 }

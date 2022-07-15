@@ -2,6 +2,7 @@ package com.meli.desafio_quality.controller;
 
 import com.meli.desafio_quality.model.Property;
 import com.meli.desafio_quality.model.PropertyDto;
+import com.meli.desafio_quality.model.PropertyRequestSave;
 import com.meli.desafio_quality.model.RoomDto;
 import com.meli.desafio_quality.service.PropertyService;
 import com.meli.desafio_quality.util.TestUtilsGenerator;
@@ -39,6 +40,10 @@ class PropertyControllerTest {
                 .thenReturn(TestUtilsGenerator.getBiggestRoomDto());
         BDDMockito.when(service.getPropertyPrice(ArgumentMatchers.anyLong()))
                 .thenReturn(TestUtilsGenerator.getPropertyDto());
+        BDDMockito.when(service.getAllProperties())
+                .thenReturn(TestUtilsGenerator.getPropertyListWithId());
+        BDDMockito.when(service.save(ArgumentMatchers.any(PropertyRequestSave.class)))
+                .thenReturn(TestUtilsGenerator.getPropertyWithId());
     }
 
     @Test
@@ -106,5 +111,36 @@ class PropertyControllerTest {
         assertThat(returnedPropertyDto.getBody().getRooms()).isEqualTo(propertyDto.getRooms());
 
         Mockito.verify(service, Mockito.atLeastOnce()).getPropertyPrice(property.getId());
+    }
+
+    @Test
+    void saveProperty() {
+        PropertyRequestSave propertyRequestSave = TestUtilsGenerator.getNewPropertyRequestSave();
+
+        ResponseEntity<Property> returnedProperty = controller.saveProperty(propertyRequestSave);
+
+        assertThat(returnedProperty.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+        assertThat(returnedProperty.getBody()).isNotNull();
+        assertThat(returnedProperty.getBody().getName()).isEqualTo(propertyRequestSave.getName());
+        assertThat(returnedProperty.getBody().getDistrict()).isEqualTo(propertyRequestSave.getDistrict());
+        assertThat(returnedProperty.getBody().getListRoom()).isEqualTo(propertyRequestSave.getListRoom());
+
+        Mockito.verify(service, Mockito.atLeastOnce()).save(propertyRequestSave);
+    }
+
+    @Test
+    void getAllProperties() {
+        List<Property> propertyList = TestUtilsGenerator.getPropertyListWithId();
+
+        ResponseEntity<List<Property>> returnedListProperty = controller.getAllProperties();
+
+        assertThat(returnedListProperty.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(returnedListProperty.getBody()).isNotEmpty();
+        assertThat(returnedListProperty.getBody()).isNotNull();
+        assertThat(returnedListProperty.getBody().size()).isEqualTo(propertyList.size());
+        assertThat(returnedListProperty.getBody().get(0)).isEqualTo(propertyList.get(0));
+        assertThat(returnedListProperty.getBody().get(1)).isEqualTo(propertyList.get(1));
+
+        Mockito.verify(service, Mockito.atLeastOnce()).getAllProperties();
     }
 }

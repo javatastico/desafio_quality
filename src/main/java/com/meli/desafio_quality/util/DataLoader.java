@@ -5,6 +5,7 @@ import com.meli.desafio_quality.model.Property;
 import com.meli.desafio_quality.model.Room;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +22,7 @@ public class DataLoader extends Data{
                         .name("Casa 1")
                         .district(District.builder()
                                 .name("Bairro 1")
-                                .valueM2(100.0)
+                                .valueM2(BigDecimal.valueOf(100.0))
                                 .build()
                         )
                         .listRoom(Arrays.asList(

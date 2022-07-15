@@ -1,13 +1,11 @@
 package com.meli.desafio_quality.service;
 
-import com.meli.desafio_quality.model.Property;
-import com.meli.desafio_quality.model.PropertyDto;
-import com.meli.desafio_quality.model.Room;
-import com.meli.desafio_quality.model.RoomDto;
+import com.meli.desafio_quality.model.*;
 import com.meli.desafio_quality.repository.PropertyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,9 +55,26 @@ public class PropertyServiceImp implements PropertyService {
                 .getRooms()
                 .stream()
                 .reduce(
-                0D, (partialPriceResult, room) -> partialPriceResult + room.getArea(), Double::sum)
-                * propertyDto.getDistrict().getValueM2());
+                        BigDecimal.ZERO,
+                        (partialPriceResult, room) -> propertyDto.getDistrict().getValueM2()
+                            .multiply(partialPriceResult.add(BigDecimal.valueOf(room.getArea()))),
+                        BigDecimal::add)
+        );
 
         return propertyDto;
+    }
+
+    @Override
+    public Property save(PropertyRequestSave propertyRequestSave) {
+        return repositoryProperty.save(Property.builder()
+                .name(propertyRequestSave.getName())
+                .district(propertyRequestSave.getDistrict())
+                .listRoom(propertyRequestSave.getListRoom())
+                .build());
+    }
+
+    @Override
+    public List<Property> getAllProperties() {
+        return repositoryProperty.getAllProperties();
     }
 }

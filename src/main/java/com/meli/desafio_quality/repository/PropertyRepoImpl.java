@@ -97,4 +97,9 @@ public class PropertyRepoImpl implements PropertyRepository {
         }
     }
 
+    @Override
+    public List<Property> getAllProperties() {
+        return dataLoader.getPropertyList();
+    }
+
 }
