@@ -1,0 +1,9 @@
+com.meli.desafio_quality
+com.meli.desafio_quality.controller
+com.meli.desafio_quality.dto
+com.meli.desafio_quality.exception
+com.meli.desafio_quality.handler
+com.meli.desafio_quality.model
+com.meli.desafio_quality.repository
+com.meli.desafio_quality.service
+com.meli.desafio_quality.util
