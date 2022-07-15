@@ -1,5 +1,6 @@
 package com.meli.desafio_quality.service;
 
+import com.meli.desafio_quality.dto.PropertyResponseTotalSquare;
 import com.meli.desafio_quality.model.Property;
 import com.meli.desafio_quality.dto.PropertyResponseTotalPrice;
 import com.meli.desafio_quality.dto.RoomDto;
@@ -77,10 +78,26 @@ class PropertyServiceImpTest {
 
         assertThat(propertyDto.getPrice()).isEqualTo(returnPropertyDto.getPrice());
         assertThat(propertyDto.getName()).isEqualTo(returnPropertyDto.getName());
-        assertThat(propertyDto.getRooms().get(0).getArea()).isEqualTo(returnPropertyDto.getRooms().get(0).getArea());
+        assertThat(propertyDto.getRooms().get(0).getArea()).isEqualTo(
+                returnPropertyDto.getRooms().get(0).getArea());
 
         verify(repository, atLeastOnce()).getProperty(property.getId());
     }
 
 
+    @Test
+    void getPropertyArea_returnPropertyResponseTotalSquare_whenPropertyIdExist() {
+
+        PropertyResponseTotalSquare expectedTotalSquare = TestUtilsGenerator.getResponseTotalSquare();
+        Property property = TestUtilsGenerator.getPropertyWithId();
+
+        List<PropertyResponseTotalSquare> responseTotalSquare = service.getPropertyArea(property.getId());
+
+        assertThat(responseTotalSquare.get(0).getName()).isEqualTo(expectedTotalSquare.getName());
+        assertThat(responseTotalSquare.get(0).getTotalPropertySquare()).isEqualTo(
+                expectedTotalSquare.getTotalPropertySquare()
+        );
+        assertThat(responseTotalSquare.get(0).getTotalPropertySquare()).isPositive();
+
+    }
 }

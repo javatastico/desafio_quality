@@ -74,7 +74,9 @@ public class PropertyServiceImp implements PropertyService {
                 .mapToDouble(area -> area.getRoomLength() * area.getRoomWidth()).sum();
         log.info("Total square: " + totalPropertySquare);
 
-        propertyArea.add(new PropertyResponseTotalSquare(property.getName(), totalPropertySquare));
+        propertyArea.add(PropertyResponseTotalSquare.builder()
+                        .name(property.getName())
+                .totalPropertySquare(totalPropertySquare).build());
 
         return propertyArea;
     }

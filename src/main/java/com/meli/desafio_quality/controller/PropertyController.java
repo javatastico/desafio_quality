@@ -21,11 +21,12 @@ public class PropertyController {
     @Autowired
     private PropertyService service;
 
-    @GetMapping("/get-area-room/{id}")
+    @GetMapping("/get-room-area/{id}")
     public ResponseEntity<List<RoomDto>> getAreaRoom(@PathVariable Long id){
         return new ResponseEntity<>(service.getAreaRoom(id),HttpStatus.OK);
     }
-    @GetMapping("/get-area-property/{id}")
+
+    @GetMapping("/get-property-area/{id}")
     public ResponseEntity<List<PropertyResponseTotalSquare>> getPropertyArea(@PathVariable Long id){
         return new ResponseEntity(service.getPropertyArea(id),HttpStatus.OK);
     }
