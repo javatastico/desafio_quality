@@ -27,7 +27,7 @@ public class PropertyController {
     }
 
     @GetMapping("/get-property-area/{id}")
-    public ResponseEntity<List<PropertyResponseTotalSquare>> getPropertyArea(@PathVariable Long id){
+    public ResponseEntity<PropertyResponseTotalSquare> getPropertyArea(@PathVariable Long id){
         return new ResponseEntity(service.getPropertyArea(id),HttpStatus.OK);
     }
 

@@ -12,7 +12,7 @@ public interface PropertyService {
     List<RoomDto> getAreaRoom(Long id);
     RoomDto getBiggestRoom(Long id);
     PropertyResponseTotalPrice getPropertyPrice(Long id);
-    List<PropertyResponseTotalSquare> getPropertyArea(Long idProperty);
+    PropertyResponseTotalSquare getPropertyArea(Long idProperty);
     Property save(PropertyRequestSave propertyRequestSave);
     List<Property> getAllProperties();
 }

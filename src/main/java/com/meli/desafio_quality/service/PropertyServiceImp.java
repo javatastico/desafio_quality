@@ -71,17 +71,16 @@ public class PropertyServiceImp implements PropertyService {
     }
 
     @Override
-    public List<PropertyResponseTotalSquare> getPropertyArea(Long idProperty) {
+    public PropertyResponseTotalSquare getPropertyArea(Long idProperty) {
         Property property = repositoryProperty.getProperty(idProperty);
-        List<PropertyResponseTotalSquare> propertyArea = new ArrayList<>();
+        PropertyResponseTotalSquare propertyArea = new PropertyResponseTotalSquare();
 
         Double totalPropertySquare = property.getListRoom().stream()
                 .mapToDouble(area -> area.getRoomLength() * area.getRoomWidth()).sum();
         log.info("Total square: " + totalPropertySquare);
 
-        propertyArea.add(PropertyResponseTotalSquare.builder()
-                        .name(property.getName())
-                .totalPropertySquare(totalPropertySquare).build());
+        propertyArea.setTotalPropertySquare(totalPropertySquare);
+        propertyArea.setName(property.getName());
 
         return propertyArea;
     }
