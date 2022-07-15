@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "3b353e20-92a1-46e4-80d8-862ac785f03f",
+		"name": "desafio_quality",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Area Room",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/get-room-area/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"get-room-area",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Property Area",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/get-property-area/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"get-property-area",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Biggest Room",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/get-biggest-room/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"get-biggest-room",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Property Price",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/get-property-price/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"get-property-price",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Properties",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/property",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"property"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Properties",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Casa\",\n    \"district\": {\n        \"name\": \"Bairro\",\n        \"valueM2\": 100.12\n    },\n    \"listRoom\": [\n        {\n            \"name\": \"Quarto\",\n            \"roomWidth\": 5.5,\n            \"roomLength\": 6.2\n        },\n        {\n            \"name\": \"Sala\",\n            \"roomWidth\": 7.8,\n            \"roomLength\": 8.0\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/property",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"property"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
