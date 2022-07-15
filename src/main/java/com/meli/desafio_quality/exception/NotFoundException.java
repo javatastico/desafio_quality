@@ -1,6 +1,5 @@
 package com.meli.desafio_quality.exception;
 
-import lombok.Data;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

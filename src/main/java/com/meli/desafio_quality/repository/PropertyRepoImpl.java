@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.client.HttpClientErrorException;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
@@ -70,18 +68,6 @@ public class PropertyRepoImpl implements PropertyRepository {
         } catch (Exception e) {
             throw new NotFoundException("Property not found.", HttpStatus.NOT_FOUND);
         }
-    }
-
-    public boolean exists(Long id) {
-        boolean ret = false;
-
-        try {
-            ret = dataLoader.getPropertyList().stream().anyMatch(p -> p.getId().equals(id));
-        } catch (Exception e) {
-
-        }
-
-        return ret;
     }
 
     @Override

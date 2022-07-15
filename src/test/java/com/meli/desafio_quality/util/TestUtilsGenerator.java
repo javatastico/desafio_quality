@@ -1,5 +1,9 @@
 package com.meli.desafio_quality.util;
 
+import com.meli.desafio_quality.dto.PropertyRequestSave;
+import com.meli.desafio_quality.dto.PropertyResponseTotalPrice;
+import com.meli.desafio_quality.dto.PropertyResponseTotalSquare;
+import com.meli.desafio_quality.dto.RoomDto;
 import com.meli.desafio_quality.model.*;
 
 import java.math.BigDecimal;
@@ -90,22 +94,31 @@ public class TestUtilsGenerator {
                 .build();
     }
 
-    public static PropertyDto getPropertyDto() {
-        return PropertyDto.builder()
+    public static PropertyResponseTotalSquare getResponseTotalSquare() {
+        return PropertyResponseTotalSquare.builder()
                 .name("Casa teste 1")
+                .totalPropertySquare(110.0)
+                .build();
+    }
+
+    public static PropertyResponseTotalPrice getPropertyDto() {
+
+        return PropertyResponseTotalPrice.builder()
+                .name("Casa teste 1")
+                .price(BigDecimal.valueOf(55000.00).setScale(2))
                 .district(District.builder()
                         .name("Bairro teste 1")
-                        .valueM2(BigDecimal.valueOf(500.0))
+                        .valueM2(BigDecimal.valueOf(500.00))
                         .build()
                 )
                 .rooms(Arrays.asList(
                         RoomDto.builder()
                                 .name("Quarto teste 1")
-                                .area(54.0)
+                                .area(54.00)
                                 .build(),
                         RoomDto.builder()
                                 .name("Quarto teste 2")
-                                .area(56.0)
+                                .area(56.00)
                                 .build())
                 ).build();
     }

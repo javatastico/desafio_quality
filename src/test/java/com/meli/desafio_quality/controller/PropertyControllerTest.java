@@ -1,12 +1,11 @@
 package com.meli.desafio_quality.controller;
 
 import com.meli.desafio_quality.model.Property;
-import com.meli.desafio_quality.model.PropertyDto;
-import com.meli.desafio_quality.model.PropertyRequestSave;
-import com.meli.desafio_quality.model.RoomDto;
+import com.meli.desafio_quality.dto.PropertyResponseTotalPrice;
+import com.meli.desafio_quality.dto.PropertyRequestSave;
+import com.meli.desafio_quality.dto.RoomDto;
 import com.meli.desafio_quality.service.PropertyService;
 import com.meli.desafio_quality.util.TestUtilsGenerator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +19,6 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -94,9 +92,9 @@ class PropertyControllerTest {
     @Test
     void getPropertyPrice() {
         Property property = TestUtilsGenerator.getPropertyWithId();
-        PropertyDto propertyDto =  TestUtilsGenerator.getPropertyDto();
+        PropertyResponseTotalPrice propertyDto =  TestUtilsGenerator.getPropertyDto();
 
-        ResponseEntity<PropertyDto> returnedPropertyDto = controller.getPropertyPrice(property.getId());
+        ResponseEntity<PropertyResponseTotalPrice> returnedPropertyDto = controller.getPropertyPrice(property.getId());
 
         assertThat(returnedPropertyDto.getStatusCode()).isEqualTo(HttpStatus.OK);
 

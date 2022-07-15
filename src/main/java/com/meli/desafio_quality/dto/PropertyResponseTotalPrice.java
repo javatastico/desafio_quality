@@ -1,5 +1,6 @@
-package com.meli.desafio_quality.model;
+package com.meli.desafio_quality.dto;
 
+import com.meli.desafio_quality.model.District;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,9 +13,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PropertyDto {
+public class PropertyResponseTotalPrice {
     private List<RoomDto> rooms;
     private BigDecimal price;
     private String name;
     private District district;
 }
+
+
