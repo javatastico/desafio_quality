@@ -2,7 +2,6 @@ package com.meli.desafio_quality.repository;
 
 import com.meli.desafio_quality.model.Property;
 import com.meli.desafio_quality.model.Room;
-import com.meli.desafio_quality.model.RoomDto;
 
 import java.util.List;
 

@@ -1,11 +1,9 @@
 package com.meli.desafio_quality.repository;
 
-import com.meli.desafio_quality.exception.ExceptionDetails;
 import com.meli.desafio_quality.exception.NotFoundException;
 import com.meli.desafio_quality.model.Property;
 import com.meli.desafio_quality.model.Room;
 import com.meli.desafio_quality.util.Data;
-import com.meli.desafio_quality.util.DataLoader;
 import com.meli.desafio_quality.util.DataLoaderTest;
 import com.meli.desafio_quality.util.TestUtilsGenerator;
 import org.junit.jupiter.api.Assertions;
@@ -15,10 +13,7 @@ import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.list;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PropertyRepoImplTest {
 

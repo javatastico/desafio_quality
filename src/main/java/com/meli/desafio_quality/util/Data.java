@@ -3,7 +3,6 @@ package com.meli.desafio_quality.util;
 import com.meli.desafio_quality.model.Property;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public abstract class Data {

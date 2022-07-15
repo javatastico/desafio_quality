@@ -1,5 +1,8 @@
 package com.meli.desafio_quality.util;
 
+import com.meli.desafio_quality.dto.PropertyResponseTotalPrice;
+import com.meli.desafio_quality.dto.PropertyResponseTotalSquare;
+import com.meli.desafio_quality.dto.RoomDto;
 import com.meli.desafio_quality.model.*;
 
 import java.util.Arrays;
@@ -89,9 +92,18 @@ public class TestUtilsGenerator {
                 .build();
     }
 
-    public static PropertyDto getPropertyDto() {
-        return PropertyDto.builder()
+    public static PropertyResponseTotalSquare getResponseTotalSquare() {
+        return PropertyResponseTotalSquare.builder()
                 .name("Casa teste 1")
+                .totalPropertySquare(110.0)
+                .build();
+    }
+
+    public static PropertyResponseTotalPrice getPropertyDto() {
+
+        return PropertyResponseTotalPrice.builder()
+                .name("Casa teste 1")
+                .price(55000.0)
                 .district(District.builder()
                         .name("Bairro teste 1")
                         .valueM2(500.0)
@@ -108,4 +120,6 @@ public class TestUtilsGenerator {
                                 .build())
                 ).build();
     }
+
+
 }
