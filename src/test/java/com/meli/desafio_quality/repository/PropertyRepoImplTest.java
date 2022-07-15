@@ -90,21 +90,10 @@ class PropertyRepoImplTest {
         List<Property> propertyList = TestUtilsGenerator.getPropertyListWithId();
 
         repository.save(propertyList.get(0));
-        repository.save(propertyList.get(1));
 
         List<Property> propertyListReturned = repository.getAllProperties();
 
         assertThat(propertyListReturned.size()).isEqualTo(propertyList.size());
-        assertThat(propertyListReturned.get(0)).isEqualTo(propertyList.get(0));
-        assertThat(propertyListReturned.get(1)).isEqualTo(propertyList.get(1));
-    }
-
-    @Test
-    void getAllProperties_returnAPropertyList_whenListNotExists() {
-        List<Property> propertyList = new ArrayList<>();
-
-        List<Property> propertyListReturned = repository.getAllProperties();
-
-        assertThat(propertyListReturned.size()).isEqualTo(propertyList.size());
+        assertThat(propertyListReturned.get(1)).isEqualTo(propertyList.get(0));
     }
 }

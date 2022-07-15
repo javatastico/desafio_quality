@@ -18,20 +18,20 @@ public class TestUtilsGenerator {
 
     public static Property getNewProperty() {
         return Property.builder()
-                .name("Casa teste 1")
+                .name("Casa")
                 .district(District.builder()
-                        .name("Bairro teste 1")
+                        .name("Bairro")
                         .valueM2(BigDecimal.valueOf(500.0))
                         .build()
                 )
                 .listRoom(Arrays.asList(
                         Room.builder()
-                                .name("Quarto teste 1")
+                                .name("Quarto")
                                 .roomLength(9.00)
                                 .roomWidth(6.00)
                                 .build(),
                         Room.builder()
-                                .name("Quarto teste 2")
+                                .name("Quarto")
                                 .roomLength(8.00)
                                 .roomWidth(7.00)
                                 .build())
@@ -40,7 +40,7 @@ public class TestUtilsGenerator {
 
     public static Property getPropertyWithId() {
         return Property.builder()
-                .id(1L)
+                .id(2L)
                 .name("Casa teste 1")
                 .district(District.builder()
                         .name("Bairro teste 1")

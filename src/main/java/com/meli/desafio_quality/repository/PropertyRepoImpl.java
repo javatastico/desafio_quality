@@ -12,6 +12,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+
 import java.util.List;
 import java.util.Properties;
 
@@ -19,7 +20,6 @@ import java.util.Properties;
 @Log4j2
 public class PropertyRepoImpl implements PropertyRepository {
 
-    @Autowired
     private Data dataLoader;
 
     private String scope;
